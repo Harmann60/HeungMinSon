@@ -78,7 +78,59 @@ npm run dev
 * 📊 Career stats and highlights
 * 🌙 Fully responsive design
 * 💬 Fan club contact form *(coming soon)*
+🛠️ Tech Stack
 
+    Frontend: React + Vite
+
+    Styling: Tailwind CSS
+
+    Animations: Framer Motion / AOS
+
+    Deployment: Vercel or Netlify
+
+📁 Project Structure
+
+├── src
+│   ├── components
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   ├── pages
+│   │   ├── Home.jsx
+│   │   ├── About.jsx
+│   │   ├── Stats.jsx
+│   │   ├── Gallery.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+├── public
+│   ├── images
+│   ├── index.html
+
+🎨 Features
+
+    🧭 Clean and smooth navigation
+
+    📸 Image gallery and highlight videos
+
+    📊 Player stats and career milestones
+
+    🌙 Responsive design (works on all devices)
+
+    💬 (Coming soon) Fan comment section
+
+🚀 How to Run Locally
+
+git clone https://github.com/your-username/son-website.git
+cd son-website
+npm install
+npm run dev
+
+💖 Inspiration
+
+This project was inspired by my admiration for Heung-Min Son — not just as a footballer but as a role model for hard work, humility, and leadership.
+📸 Screenshots
+
+(Add images of your homepage, gallery, etc. once ready)
+🧑‍💻 Author
 ---
 
 ## 💖 **Inspiration**
@@ -90,6 +142,6 @@ This project reflects my admiration for **Heung-Min Son’s** discipline, humili
 ---
 
 ## 🧑‍💻 **Author**
-Harman
-email: harmanjss10@gmail.com
+Harman  
+harmanjss10@gmail.com
 ---
