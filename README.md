@@ -1,5 +1,5 @@
 
-# ⚽ **Heung-Min Son Website**
+# ⚽ **Heung Min Son Website**
 
 A modern, responsive, and interactive fan website dedicated to **Heung-Min Son**, the South Korean football legend and Tottenham Hotspur captain. Now plays for LAFC in MLS
 Built with ❤️ using **React**, **Vite**, and **Tailwind CSS**.
@@ -92,5 +92,6 @@ This project reflects my admiration for **Heung-Min Son’s** discipline, humili
 ## 🧑‍💻 **Author**
 
 **Harman**
+
 harmanjss10@gmail.com
 ---
