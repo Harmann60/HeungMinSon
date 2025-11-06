@@ -90,7 +90,6 @@ This project reflects my admiration for **Heung-Min Son’s** discipline, humili
 ---
 
 ## 🧑‍💻 **Author**
-
-**Harman**
+Harman
 harmanjss10@gmail.com
 ---
