@@ -18,10 +18,10 @@ The site showcases:
 * 🎨 A stunning, responsive design
 
 ---
-## 🌍 Vision
+##🌍 Vision
 
-There are dedicated websites for players like Messi and Ronaldo — but Heung-Min Son, one of the most hardworking and inspiring players of our generation, doesn’t have one that does him justice.  
-This project aims to fill that gap by creating a beautiful, fan-driven digital home for Son fans worldwide.
+There are dedicated websites for global icons like Messi and Ronaldo — but Heung-Min Son, one of the most hardworking and humble players of our generation, doesn’t have a website that truly captures his journey and spirit.
+This project aims to fill that gap by creating a beautiful, fan-driven digital space where fans can celebrate Son’s passion, discipline, and incredible story.
 ---
 
 ## 🛠️ **Tech Stack**
