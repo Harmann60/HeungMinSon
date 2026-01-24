@@ -37,28 +37,6 @@ The site showcases:
 
 ---
 
-## 📂 **Folder Structure**
-
-```
-son-website/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx
-│   │   ├── Footer.jsx
-│   ├── pages/
-│   │   ├── Home.jsx
-│   │   ├── About.jsx
-│   │   ├── Stats.jsx
-│   │   ├── Gallery.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-├── public/
-│   ├── images/
-│   ├── index.html
-```
-
----
-
 ## 💻 **How to Run Locally**
 
 ```bash
