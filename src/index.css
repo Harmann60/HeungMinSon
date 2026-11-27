@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0c0c0c;
+  --color-main-bg: #232224;
+  --color-white: #ffffff;
+  --color-beige: #b9bbad;
+  --color-default: #d2ff00;
+  --color-musgo: #282C20;
+  --font-sans: "Mona Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-brier: "Caveat", cursive;
+  --font-bungee: "Bungee", sans-serif;
+}
+
+::selection {
+  background: var(--color-default);
+  color: #0c0c0c;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-sans);
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.menu-link {
+  will-change: transform;
+}
+
+.digit {
+  height: 100px;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.digit-inner {
+  transform-style: preserve-3d;
+}
+
+.digit-inner div {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@layer components {
+  .vd-card {
+    @apply flex-none overflow-hidden rounded-3xl md:rounded-[2vw] bg-main-bg border border-white/10;
+    margin-left: -110px;
+    will-change: transform;
+  }
+
+  .vd-card:first-child {
+    margin-left: 0;
+  }
+
+  .vd-card:nth-child(odd) {
+    transform: translateY(-24px);
+  }
+
+  .vd-card:nth-child(even) {
+    transform: translateY(24px);
+  }
+
+  @media (max-width: 768px) {
+    .vd-card {
+      margin-left: -64px;
+    }
+
+    .vd-card:nth-child(odd),
+    .vd-card:nth-child(even) {
+      transform: translateY(0);
+    }
+  }
+}
+
+.footer-masked-panel {
+  --mask-url: url(/svgs/image-bg.svg);
+  -webkit-mask-image: var(--mask-url);
+  mask-image: var(--mask-url);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
