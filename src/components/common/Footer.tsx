@@ -57,128 +57,147 @@ export const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="relative w-full p-4 md:p-6 pb-20 md:pb-16 pt-16 md:pt-28 bg-default footer-root text-black">
-      <div className="max-w-[1680px] mx-auto">
-        <div className="footer-masked-panel relative w-full rounded-2xl bg-black overflow-hidden min-h-[760px] md:min-h-[820px] flex flex-col justify-between p-8 md:p-14">
-          {/* Pitch Contour Backdrop */}
-          <div className="absolute inset-0 pointer-events-none opacity-45">
-            <PitchPattern stroke="#2c3024" />
-          </div>
+    <footer className="relative w-full bg-black text-white border-t border-white/10 overflow-hidden">
+      {/* Taegeuk Crimson -> Blue -> Gold Top Hairline */}
+      <div className="h-1 w-full bg-gradient-to-r from-taegeuk via-crimson to-default" />
 
-          {/* Top Nav Columns + Centerpiece Statement (Lando Norris Footer Layout) */}
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-10 items-start pt-6">
-            {/* Pages Column */}
-            <div className="md:col-span-3 flex flex-col items-center md:items-start">
-              <h6 className="font-sans text-xs font-bold uppercase tracking-widest text-beige">
-                Pages
-              </h6>
-              <ul className="mt-4 flex flex-col items-center md:items-start gap-1.5">
-                {menuList.map((item) => {
-                  const isActive = activeSection === item.sectionId
-                  return (
-                    <li key={item.id} className="relative overflow-hidden group">
-                      <button
-                        type="button"
-                        onClick={() => scrollTo(item.target, item.sectionId)}
-                        className={clsx(
-                          'font-sans text-2xl md:text-3xl xl:text-4xl font-bold tracking-tighter uppercase transition-colors',
-                          isActive ? 'text-white/40' : 'text-white hover:text-default'
-                        )}
-                      >
-                        {item.label}
-                      </button>
-                      {isActive && (
-                        <div className="absolute inset-0 pointer-events-none flex items-center">
-                          <MenuLine />
-                        </div>
+      <div className="relative max-w-[1680px] mx-auto px-5 md:px-10 pt-20 pb-12">
+        {/* Subtle Pitch Contour Backdrop */}
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+          <PitchPattern stroke="#1c243b" />
+        </div>
+
+        {/* Giant Hangul Watermark */}
+        <div className="absolute inset-x-0 top-12 flex justify-center pointer-events-none overflow-hidden">
+          <span className="font-kr text-[20vw] font-black text-white/[0.025] leading-none select-none">
+            손흥민 07
+          </span>
+        </div>
+
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          {/* Left Navigation */}
+          <div className="md:col-span-3 flex flex-col items-center md:items-start">
+            <h6 className="font-sans text-xs font-bold uppercase tracking-widest text-default">
+              Explore
+            </h6>
+            <ul className="mt-4 flex flex-col items-center md:items-start gap-2">
+              {menuList.map((item) => {
+                const isActive = activeSection === item.sectionId
+                return (
+                  <li key={item.id} className="relative overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => scrollTo(item.target, item.sectionId)}
+                      className={clsx(
+                        'font-bungee text-2xl md:text-3xl tracking-tight uppercase transition-colors',
+                        isActive ? 'text-white/40' : 'text-white hover:text-default'
                       )}
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-
-            {/* Centerpiece Signature + Statement + Trophy Visual */}
-            <div className="md:col-span-6 flex flex-col items-center text-center">
-              <div className="-rotate-6 mb-2">
-                <SonSignature width={230} height={92} color="#d2ff00" />
-              </div>
-              <h2 className="font-sans text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] text-white">
-                Always <span className="font-brier text-default font-normal lowercase text-5xl sm:text-6xl lg:text-8xl">bringing</span>
-                <span className="block">
-                  the <span className="font-brier text-default font-normal lowercase text-5xl sm:text-6xl lg:text-8xl">smile</span>.
-                </span>
-              </h2>
-
-              <div className="mt-6 w-64 sm:w-80 md:w-96 aspect-square relative">
-                <img
-                  src="/images/footer-trophy.jpg"
-                  alt="Heung-Min Son Captain Trophy Silhouette"
-                  className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(210,255,0,0.2)] rounded-full"
-                />
-              </div>
-            </div>
-
-            {/* Follow On Column */}
-            <div className="md:col-span-3 flex flex-col items-center md:items-end">
-              <h6 className="font-sans text-xs font-bold uppercase tracking-widest text-beige">
-                Follow On
-              </h6>
-              <ul className="mt-4 flex flex-col items-center md:items-end gap-1.5">
-                {socialMediaList.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-sans text-2xl md:text-3xl xl:text-4xl font-bold tracking-tighter uppercase text-white hover:text-default transition-colors"
                     >
                       {item.label}
-                    </a>
+                    </button>
+                    {isActive && (
+                      <div className="absolute inset-0 pointer-events-none flex items-center">
+                        <MenuLine />
+                      </div>
+                    )}
                   </li>
-                ))}
-              </ul>
+                )
+              })}
+            </ul>
+          </div>
+
+          {/* Centerpiece Trophy & Signature */}
+          <div className="md:col-span-6 flex flex-col items-center text-center">
+            <div className="-rotate-3 mb-1">
+              <SonSignature width={210} height={86} color="#f5c518" />
+            </div>
+            <h2 className="font-bungee text-4xl sm:text-6xl lg:text-7xl tracking-tight uppercase leading-[0.9] text-white">
+              We Keep <span className="font-brier text-default font-normal lowercase text-5xl sm:text-7xl">smiling</span>.
+              <span className="block mt-1">
+                We Keep <span className="font-brier text-crimson font-normal lowercase text-5xl sm:text-7xl">fighting</span>.
+              </span>
+            </h2>
+
+            <div className="mt-6 w-60 sm:w-72 aspect-square relative rounded-full overflow-hidden border border-default/25 shadow-[0_0_80px_rgba(245,197,24,0.16)]">
+              <img
+                src="/images/footer-trophy.jpg"
+                alt="Heung-Min Son Captain Trophy Silhouette"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
 
-          {/* Infinite Bottom Marquee */}
-          <div className="relative z-10 overflow-hidden w-full pt-8 border-t border-white/10">
-            <div ref={marqueeRef} className="flex w-max">
-              <div ref={contentRef} className="flex items-center gap-10 pr-10">
-                {marqueeBrands.map((brand, i) => (
-                  <span
-                    key={`a-${i}`}
-                    className="font-bungee text-xl md:text-2xl text-default tracking-tight whitespace-nowrap opacity-90"
+          {/* Right Official Links & Cities */}
+          <div className="md:col-span-3 flex flex-col items-center md:items-end text-center md:text-right">
+            <h6 className="font-sans text-xs font-bold uppercase tracking-widest text-default">
+              Follow Sonny
+            </h6>
+            <ul className="mt-4 flex flex-col items-center md:items-end gap-2">
+              {socialMediaList.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bungee text-2xl md:text-3xl tracking-tight uppercase text-white hover:text-default transition-colors"
                   >
-                    {brand} <span className="text-white/30 ml-6">✦</span>
-                  </span>
-                ))}
-              </div>
-              <div className="flex items-center gap-10 pr-10" aria-hidden="true">
-                {marqueeBrands.map((brand, i) => (
-                  <span
-                    key={`b-${i}`}
-                    className="font-bungee text-xl md:text-2xl text-default tracking-tight whitespace-nowrap opacity-90"
-                  >
-                    {brand} <span className="text-white/30 ml-6">✦</span>
-                  </span>
-                ))}
-              </div>
+                    {item.label} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 p-4 rounded-2xl bg-main-bg/80 border border-white/10 text-xs text-beige">
+              <span className="block font-kr font-bold text-white mb-1">대한민국 주장 · #7</span>
+              Chuncheon → Hamburg → Leverkusen → North London → Los Angeles
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Legal Bar on Lime Ground (Exact Lando Detail) */}
-      <div className="max-w-[1680px] mx-auto mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 px-2 text-black">
-        <p className="font-sans text-xs md:text-sm font-medium">
-          <strong>© 2026 Heung-Min Son Fan Tribute</strong> · Built by Harman
-        </p>
-        <div className="flex items-center gap-5 font-sans text-xs md:text-sm font-extrabold uppercase tracking-tight">
-          <a href="#hero" className="hover:underline">Back to Top</a>
-          <a href="https://github.com/Harmann60/HeungMinSon" target="_blank" rel="noreferrer" className="hover:underline">
-            GitHub
-          </a>
+        {/* Career Honors Marquee */}
+        <div className="relative z-10 overflow-hidden w-full mt-14 pt-8 border-t border-white/10">
+          <div ref={marqueeRef} className="flex w-max">
+            <div ref={contentRef} className="flex items-center gap-10 pr-10">
+              {marqueeBrands.map((brand, i) => (
+                <span
+                  key={`a-${i}`}
+                  className="font-bungee text-xl md:text-2xl text-default tracking-wide whitespace-nowrap"
+                >
+                  {brand} <span className="text-crimson ml-6">★</span>
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-10 pr-10" aria-hidden="true">
+              {marqueeBrands.map((brand, i) => (
+                <span
+                  key={`b-${i}`}
+                  className="font-bungee text-xl md:text-2xl text-default tracking-wide whitespace-nowrap"
+                >
+                  {brand} <span className="text-crimson ml-6">★</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Copyright */}
+        <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-beige">
+          <p>
+            <strong className="text-white">© 2026 Heung-Min Son Fan Tribute</strong> · Built with ❤️ by Harman
+          </p>
+          <div className="flex items-center gap-5 font-bold uppercase tracking-wider">
+            <a href="#hero" className="hover:text-default transition-colors">
+              Back to Top
+            </a>
+            <a
+              href="https://github.com/Harmann60/HeungMinSon"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-default transition-colors"
+            >
+              GitHub Repo
+            </a>
+          </div>
         </div>
       </div>
     </footer>

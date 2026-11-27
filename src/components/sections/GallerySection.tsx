@@ -5,11 +5,11 @@ import { galleryCards, GalleryCard } from '../../data/sonData'
 import { useFanWallStore, useMenuStore } from '../../store/useAppStore'
 
 const paletteClasses: Record<GalleryCard['palette'], string> = {
-  lime: 'bg-default text-black border-default',
-  obsidian: 'bg-black text-white border-white/15',
-  gold: 'bg-gradient-to-br from-[#232224] to-[#282C20] text-white border-default/40',
-  navy: 'bg-[#101830] text-white border-white/20',
-  crimson: 'bg-[#2a0c14] text-white border-white/20',
+  gold: 'bg-default text-black border-default',
+  obsidian: 'bg-black text-white border-white/20',
+  navy: 'bg-[#121a35] text-white border-white/20',
+  taegeuk: 'bg-[#0b275c] text-white border-taegeuk/50',
+  crimson: 'bg-[#450d15] text-white border-crimson/60',
 }
 
 export const GallerySection: React.FC = () => {
@@ -45,51 +45,62 @@ export const GallerySection: React.FC = () => {
     <section
       id="gallery"
       onMouseEnter={() => setActiveSection('gallery')}
-      className="py-24 px-5 md:px-10 bg-black relative overflow-hidden"
+      className="py-24 px-5 md:px-10 bg-main-bg/40 border-t border-white/10 relative overflow-hidden"
     >
       <div className="max-w-[1680px] mx-auto">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="font-sans text-xs font-bold uppercase tracking-widest text-default">
-            Highlights & Fan Community
-          </span>
-          <h2 className="mt-2 font-bungee text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white leading-none">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-3 mb-2">
+            <span className="font-kr text-xs font-black text-crimson bg-black px-3 py-1 rounded-full border border-crimson/40">
+              35mm 필름 · 팬 월
+            </span>
+            <span className="font-sans text-xs font-bold uppercase tracking-widest text-default">
+              Contact Sheet & Fan Wall
+            </span>
+          </div>
+          <h2 className="font-bungee text-5xl sm:text-7xl md:text-8xl uppercase tracking-tight text-white leading-[0.9]">
             Frame The <span className="text-default">Moment</span>
           </h2>
           <p className="mt-4 font-sans text-base md:text-lg text-beige">
-            Click any card in Sonny’s tilted reel below, or drop your own note in the Fan Club Wall.
+            Inspired by Sonny’s trademark camera celebration — click any 35mm contact frame below or sign the Fan Wall.
           </p>
         </div>
 
-        {/* Tilted Staggered Card Deck (Lando .vd-card style) */}
-        <div className="flex items-center justify-start xl:justify-center overflow-x-auto py-12 px-4 gap-2 no-scrollbar">
+        {/* 35mm Film Contact-Sheet Card Deck */}
+        <div className="flex items-center justify-start xl:justify-center overflow-x-auto py-12 px-4 gap-2">
           {galleryCards.map((card) => {
             const isSelected = activeCard.id === card.id
             return (
               <motion.button
                 key={card.id}
                 type="button"
-                whileHover={{ y: -22, rotate: 0, scale: 1.04, zIndex: 40 }}
+                whileHover={{ y: -20, rotate: 0, scale: 1.04, zIndex: 40 }}
                 onClick={() => setActiveCard(card)}
-                className={`vd-card relative w-64 sm:w-72 h-88 p-6 text-left flex flex-col justify-between transition-shadow duration-300 shadow-2xl ${
+                className={`film-card relative w-64 sm:w-72 h-92 p-5 text-left flex flex-col justify-between transition-shadow duration-300 shadow-2xl ${
                   paletteClasses[card.palette]
                 } ${card.rotation} ${isSelected ? 'ring-4 ring-default z-30' : 'z-10'}`}
               >
-                <div className="flex items-center justify-between">
+                {/* 35mm Film Sprocket Strip Top */}
+                <div className="flex items-center justify-between gap-1.5 opacity-45">
+                  {Array.from({ length: 7 }).map((_, idx) => (
+                    <span key={idx} className="w-3.5 h-2 rounded-xs bg-current" />
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between mt-2">
                   <span
-                    className={`text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-full ${
-                      card.palette === 'lime'
+                    className={`text-[10px] font-mono font-extrabold uppercase tracking-widest px-2 py-0.5 rounded ${
+                      card.palette === 'gold'
                         ? 'bg-black text-default'
                         : 'bg-white/10 text-default'
                     }`}
                   >
-                    {card.tag}
+                    {card.frameCode}
                   </span>
                   <Camera className="w-4 h-4 opacity-70" />
                 </div>
 
-                <div>
-                  <span className="block font-bungee text-3xl leading-none mb-2">
+                <div className="my-auto py-3">
+                  <span className="block font-bungee text-4xl leading-none mb-2">
                     {card.stat}
                   </span>
                   <h3 className="font-sans text-xl font-extrabold tracking-tight leading-snug">
@@ -98,29 +109,36 @@ export const GallerySection: React.FC = () => {
                   <p className="mt-1 text-xs opacity-80">{card.subtitle}</p>
                 </div>
 
-                <div className="pt-3 border-t border-current/15 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest opacity-80">
+                <div className="pt-2 border-t border-current/15 flex items-center justify-between text-[11px] font-mono font-bold uppercase tracking-widest opacity-80">
                   <span>{card.year}</span>
                   <span>SON #7</span>
+                </div>
+
+                {/* 35mm Film Sprocket Strip Bottom */}
+                <div className="flex items-center justify-between gap-1.5 opacity-45 mt-2">
+                  {Array.from({ length: 7 }).map((_, idx) => (
+                    <span key={idx} className="w-3.5 h-2 rounded-xs bg-current" />
+                  ))}
                 </div>
               </motion.button>
             )
           })}
         </div>
 
-        {/* Active Card Spotlight */}
-        <div className="max-w-3xl mx-auto mt-4 mb-20 rounded-3xl bg-main-bg border border-white/10 p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* Active Contact Frame Spotlight */}
+        <div className="max-w-3xl mx-auto mt-2 mb-20 rounded-3xl bg-black border border-white/15 p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-default">
-              {activeCard.tag} · {activeCard.year}
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-default">
+              {activeCard.frameCode} · {activeCard.year}
             </span>
-            <h3 className="mt-1 font-bungee text-2xl text-white uppercase">
+            <h3 className="mt-1 font-bungee text-2xl md:text-3xl text-white uppercase">
               {activeCard.title}
             </h3>
             <p className="mt-2 font-sans text-sm md:text-base text-beige leading-relaxed">
               {activeCard.caption}
             </p>
           </div>
-          <span className="shrink-0 px-4 py-2 rounded-full bg-black border border-default/40 font-bungee text-lg text-default">
+          <span className="shrink-0 px-4 py-2 rounded-full bg-main-bg border border-default/40 font-bungee text-xl text-default">
             {activeCard.stat}
           </span>
         </div>
@@ -131,7 +149,7 @@ export const GallerySection: React.FC = () => {
             <span className="text-xs font-bold uppercase tracking-widest text-default">
               Fan Club Guestbook
             </span>
-            <h3 className="mt-2 font-bungee text-3xl md:text-5xl uppercase text-white tracking-tighter">
+            <h3 className="mt-2 font-bungee text-4xl md:text-5xl uppercase text-white tracking-tight">
               Leave A Note For <span className="text-default">Sonny</span>
             </h3>
             <p className="mt-3 font-sans text-sm md:text-base text-beige">
@@ -146,14 +164,14 @@ export const GallerySection: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 rounded-xl bg-main-bg border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60"
+                  className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60"
                 />
                 <input
                   type="text"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   placeholder="City / Country"
-                  className="w-full px-4 py-3 rounded-xl bg-main-bg border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60"
+                  className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60"
                 />
               </div>
 
@@ -161,7 +179,7 @@ export const GallerySection: React.FC = () => {
                 value={era}
                 onChange={(e) => setEra(e.target.value)}
                 aria-label="Favorite Son Era"
-                className="w-full px-4 py-3 rounded-xl bg-main-bg border border-white/15 focus:border-default outline-none text-white text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 focus:border-default outline-none text-white text-sm"
               >
                 <option value="Spurs #7">Favorite Era: Tottenham Hotspur Captain</option>
                 <option value="LAFC #7">Favorite Era: LAFC Black & Gold</option>
@@ -175,7 +193,7 @@ export const GallerySection: React.FC = () => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your tribute or favorite Sonny memory..."
-                className="w-full px-4 py-3 rounded-xl bg-main-bg border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60 resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-black border border-white/15 focus:border-default outline-none text-white text-sm placeholder:text-beige/60 resize-none"
               />
 
               <button
@@ -200,14 +218,14 @@ export const GallerySection: React.FC = () => {
               <span className="text-xs font-bold uppercase tracking-widest text-beige">
                 Recent Fan Tributes ({messages.length})
               </span>
-              <span className="font-brier text-2xl text-default">COYS · LAFC · 대한민국</span>
+              <span className="font-kr text-sm font-bold text-default">COYS · LAFC · 대한민국</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {messages.map((item) => (
                 <div
                   key={item.id}
-                  className="p-5 rounded-2xl bg-main-bg border border-white/10 flex flex-col justify-between gap-4"
+                  className="p-5 rounded-2xl bg-black border border-white/10 flex flex-col justify-between gap-4"
                 >
                   <p className="font-sans text-sm md:text-base text-white leading-relaxed">
                     “{item.message}”
@@ -221,7 +239,7 @@ export const GallerySection: React.FC = () => {
                         {item.country}
                       </span>
                     </div>
-                    <span className="px-2.5 py-1 rounded-full bg-black text-[10px] font-bold uppercase tracking-widest text-white border border-white/10">
+                    <span className="px-2.5 py-1 rounded-full bg-main-bg text-[10px] font-bold uppercase tracking-widest text-white border border-white/10">
                       {item.era}
                     </span>
                   </div>
