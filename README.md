@@ -1,4 +1,4 @@
-# Heung-Min Son — #7 Tribute Website
+# Heung-Min Son — #7🇰🇷 Tribute Website
 
 An interactive, motion-driven athlete tribute website dedicated to **Heung-Min Son** — South Korea national team captain, Tottenham Hotspur legend, and LAFC `#7`.
 
