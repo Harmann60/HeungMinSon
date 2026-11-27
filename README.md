@@ -4,13 +4,6 @@ An interactive, motion-driven athlete tribute website dedicated to **Heung-Min S
 
 **Live Site:** [heung-min-son.vercel.app](https://heung-min-son.vercel.app/)
 
-![React](https://img.shields.io/badge/React-19-111936?style=flat-square&logo=react&logoColor=38bdf8)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.7-111936?style=flat-square&logo=typescript&logoColor=38bdf8)
-![Vite](https://img.shields.io/badge/Vite-6-111936?style=flat-square&logo=vite&logoColor=38bdf8)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-111936?style=flat-square&logo=tailwindcss&logoColor=38bdf8)
-![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-111936?style=flat-square&logo=greensock&logoColor=38bdf8)
-![Deployed on Vercel](https://img.shields.io/badge/Vercel-Deployed-111936?style=flat-square&logo=vercel&logoColor=38bdf8)
-
 ---
 
 ## Vision
