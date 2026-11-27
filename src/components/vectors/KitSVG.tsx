@@ -27,10 +27,10 @@ export const KitOrBootVisual: React.FC<KitVisualProps> = ({ item, hovered = fals
           strokeLinejoin="round"
         />
         {/* Signature neon streaks */}
-        <path d="M98 86L134 114M116 82L152 110M134 79L170 106" stroke={hovered ? '#0c0c0c' : item.secondaryColor} strokeWidth="5" strokeLinecap="round" />
+        <path d="M98 86L134 114M116 82L152 110M134 79L170 106" stroke={hovered ? '#070b19' : item.secondaryColor} strokeWidth="5" strokeLinecap="round" />
         {/* Studs */}
         <path d="M62 144V156M86 144V156M114 144V156M176 144V156M208 144V156" stroke={item.accentColor} strokeWidth="4.5" strokeLinecap="round" />
-        <text x="64" y="128" fill={hovered ? '#0c0c0c' : '#ffffff'} fontSize="18" fontWeight="900" fontFamily="Bungee, sans-serif">
+        <text x="64" y="128" fill={hovered ? '#070b19' : '#f8fafc'} fontSize="18" fontWeight="900" fontFamily="Bungee, sans-serif">
           SON 07
         </text>
       </svg>
@@ -81,7 +81,7 @@ export const KitOrBootVisual: React.FC<KitVisualProps> = ({ item, hovered = fals
             x="120"
             y="95"
             textAnchor="middle"
-            fill={isLight ? '#0c0c0c' : '#ffffff'}
+            fill={isLight ? '#070b19' : '#f8fafc'}
             fontSize="17"
             fontWeight="900"
             letterSpacing="3"
@@ -93,7 +93,7 @@ export const KitOrBootVisual: React.FC<KitVisualProps> = ({ item, hovered = fals
             x="120"
             y="168"
             textAnchor="middle"
-            fill={item.accentColor === '#d2ff00' && isLight ? item.secondaryColor : item.accentColor}
+            fill={item.accentColor === '#38bdf8' && isLight ? item.secondaryColor : item.accentColor}
             fontSize="68"
             fontWeight="900"
             fontFamily="Bungee, sans-serif"

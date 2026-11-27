@@ -30,19 +30,14 @@ export const ArchiveSection: React.FC = () => {
       <div className="max-w-[1680px] mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
           <div>
-            <div className="flex items-center gap-3">
-              <span className="font-kr text-xs font-black text-crimson bg-black/70 px-3 py-1 rounded-full border border-crimson/40">
-                유니폼 아카이브
-              </span>
-              <span className="font-sans text-xs font-bold uppercase tracking-widest text-default">
-                Matchworn Vault
-              </span>
-            </div>
-            <h2 className="mt-3 font-bungee text-5xl sm:text-7xl md:text-8xl uppercase tracking-tight text-white leading-[0.9]">
+            <span className="font-sans text-xs font-bold uppercase tracking-widest text-default">
+              Kits & Signature Boots Archive
+            </span>
+            <h2 className="mt-2 font-bungee text-4xl sm:text-6xl md:text-7xl uppercase tracking-tighter text-white leading-none">
               Shirts Of <span className="text-default">History</span>
             </h2>
             <p className="mt-4 max-w-xl font-sans text-base md:text-lg text-beige">
-              Hover any collector slab to flip from club crest to Sonny’s iconic #7 back print — click to inspect its match story.
+              Hover any jersey or boot to flip to Sonny’s iconic #7 back print — click to inspect the story behind each era.
             </p>
           </div>
 
@@ -55,7 +50,7 @@ export const ArchiveSection: React.FC = () => {
                 className={`px-4 py-2 rounded-full font-sans text-xs font-extrabold uppercase tracking-wider transition-all ${
                   filter === cat
                     ? 'bg-default text-black'
-                    : 'bg-black/70 text-white border border-white/15 hover:border-default'
+                    : 'bg-black/60 text-white border border-white/15 hover:border-default'
                 }`}
               >
                 {cat}
@@ -64,6 +59,7 @@ export const ArchiveSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Grid inspired by Lando's Helmets Showcase */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((item) => {
             const isHovered = hoveredId === item.id
@@ -75,22 +71,25 @@ export const ArchiveSection: React.FC = () => {
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => setSelectedItem(item)}
-                className="group relative text-left rounded-3xl bg-black border border-white/10 hover:border-default/70 p-6 transition-colors overflow-hidden flex flex-col justify-between min-h-[390px]"
+                className="group relative text-left rounded-3xl bg-black border border-white/10 hover:border-default/70 p-6 transition-colors overflow-hidden flex flex-col justify-between min-h-[380px]"
               >
+                {/* Top metadata */}
                 <div className="flex items-center justify-between w-full z-10">
                   <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-beige">
                     {item.season}
                   </span>
-                  <span className="font-kr text-xs font-bold text-crimson">{item.hangulClub}</span>
+                  <span className="font-bungee text-sm text-default">#{item.number}</span>
                 </div>
 
+                {/* Centerpiece SVG Kit / Boot (Hover Swaps Front -> Back!) */}
                 <div className="relative h-52 w-full my-4 flex items-center justify-center">
                   <KitOrBootVisual item={item} hovered={isHovered} />
                 </div>
 
+                {/* Bottom info */}
                 <div className="z-10">
                   <span className="block text-[11px] font-bold uppercase tracking-widest text-default">
-                    {item.club} · #{item.number}
+                    {item.club}
                   </span>
                   <h3 className="mt-1 font-sans text-xl md:text-2xl font-extrabold tracking-tight text-white group-hover:text-default transition-colors">
                     {item.title}
@@ -100,9 +99,10 @@ export const ArchiveSection: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Subtle glow */}
                 <div
                   className={`absolute -bottom-16 -right-16 w-44 h-44 rounded-full blur-3xl transition-opacity duration-500 pointer-events-none ${
-                    isHovered ? 'opacity-20 bg-default' : 'opacity-0'
+                    isHovered ? 'opacity-25 bg-default' : 'opacity-0'
                   }`}
                 />
               </motion.button>
@@ -111,6 +111,7 @@ export const ArchiveSection: React.FC = () => {
         </div>
       </div>
 
+      {/* Inspect Modal */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
@@ -145,10 +146,7 @@ export const ArchiveSection: React.FC = () => {
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>{selectedItem.season} · {selectedItem.club}</span>
                   </div>
-                  <span className="block font-kr text-xs font-bold text-crimson mt-1">
-                    {selectedItem.hangulClub}
-                  </span>
-                  <h3 className="mt-2 font-bungee text-3xl md:text-4xl uppercase leading-tight">
+                  <h3 className="mt-2 font-bungee text-2xl md:text-3xl uppercase leading-tight">
                     {selectedItem.title}
                   </h3>
                   <p className="mt-3 font-sans text-sm md:text-base text-beige leading-relaxed">

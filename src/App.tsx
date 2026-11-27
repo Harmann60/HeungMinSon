@@ -4,7 +4,6 @@ import { Header } from './components/common/Header'
 import { Menu } from './components/common/Menu'
 import { Footer } from './components/common/Footer'
 import { HeroSection } from './components/sections/HeroSection'
-import { SignatureGoalsSection } from './components/sections/SignatureGoalsSection'
 import { OnPitchSection } from './components/sections/OnPitchSection'
 import { ArchiveSection } from './components/sections/ArchiveSection'
 import { OffPitchSection } from './components/sections/OffPitchSection'
@@ -18,7 +17,6 @@ export const App: React.FC = () => {
       <Menu />
       <main>
         <HeroSection />
-        <SignatureGoalsSection />
         <OnPitchSection />
         <ArchiveSection />
         <OffPitchSection />

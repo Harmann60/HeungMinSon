@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type PageSection = 'home' | 'goals' | 'on-pitch' | 'archive' | 'off-pitch' | 'gallery'
+export type PageSection = 'home' | 'on-pitch' | 'archive' | 'off-pitch' | 'gallery'
 
 interface MenuState {
   open: boolean

@@ -5,7 +5,7 @@ interface TrophyProps {
   stroke?: string
 }
 
-export const TrophyIcon: React.FC<TrophyProps> = ({ type, stroke = '#f5c518' }) => {
+export const TrophyIcon: React.FC<TrophyProps> = ({ type, stroke = '#38bdf8' }) => {
   switch (type) {
     case 'europa':
       return (

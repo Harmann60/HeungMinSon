@@ -1,23 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-black: #07090e;
-  --color-main-bg: #121622;
+  --color-black: #070b19;
+  --color-main-bg: #111936;
   --color-white: #f8fafc;
-  --color-beige: #a8b2c5;
-  --color-default: #f5c518;
-  --color-crimson: #cd2e3a;
-  --color-taegeuk: #2e7bff;
-  --color-musgo: #161d2f;
-  --font-sans: "Mona Sans", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-beige: #94a3b8;
+  --color-default: #38bdf8;
+  --color-musgo: #162244;
+  --font-sans: "Mona Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-brier: "Caveat", cursive;
-  --font-bungee: "Bebas Neue", "Noto Sans KR", sans-serif;
-  --font-kr: "Noto Sans KR", sans-serif;
+  --font-bungee: "Bungee", sans-serif;
 }
 
 ::selection {
   background: var(--color-default);
-  color: #07090e;
+  color: #070b19;
 }
 
 html,
@@ -49,34 +46,62 @@ button {
   will-change: transform;
 }
 
-/* 35mm Film Contact-Sheet Card Styling */
+.digit {
+  height: 100px;
+  perspective: 800px;
+  overflow: hidden;
+}
+
+.digit-inner {
+  transform-style: preserve-3d;
+}
+
+.digit-inner div {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @layer components {
-  .film-card {
-    @apply flex-none overflow-hidden rounded-2xl bg-main-bg border border-white/15;
-    margin-left: -84px;
+  .vd-card {
+    @apply flex-none overflow-hidden rounded-3xl md:rounded-[2vw] bg-main-bg border border-white/10;
+    margin-left: -110px;
     will-change: transform;
   }
 
-  .film-card:first-child {
+  .vd-card:first-child {
     margin-left: 0;
   }
 
-  .film-card:nth-child(odd) {
-    transform: translateY(-20px);
+  .vd-card:nth-child(odd) {
+    transform: translateY(-24px);
   }
 
-  .film-card:nth-child(even) {
-    transform: translateY(20px);
+  .vd-card:nth-child(even) {
+    transform: translateY(24px);
   }
 
   @media (max-width: 768px) {
-    .film-card {
-      margin-left: -48px;
+    .vd-card {
+      margin-left: -64px;
     }
 
-    .film-card:nth-child(odd),
-    .film-card:nth-child(even) {
+    .vd-card:nth-child(odd),
+    .vd-card:nth-child(even) {
       transform: translateY(0);
     }
   }
+}
+
+.footer-masked-panel {
+  --mask-url: url(/svgs/image-bg.svg);
+  -webkit-mask-image: var(--mask-url);
+  mask-image: var(--mask-url);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
 }

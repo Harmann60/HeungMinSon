@@ -1,9 +1,8 @@
 export interface NavItem {
   id: string
   label: string
-  hangul: string
   target: string
-  sectionId: 'home' | 'goals' | 'on-pitch' | 'archive' | 'off-pitch' | 'gallery'
+  sectionId: 'home' | 'on-pitch' | 'archive' | 'off-pitch' | 'gallery'
 }
 
 export interface SocialItem {
@@ -12,30 +11,9 @@ export interface SocialItem {
   url: string
 }
 
-export interface SignatureGoal {
-  id: string
-  title: string
-  opponent: string
-  competition: string
-  date: string
-  minute: string
-  foot: 'Right Foot' | 'Left Foot'
-  distance: string
-  speedOrCurve: string
-  description: string
-  /** SVG coordinates inside 0..600 x 0..360 tactical pitch */
-  pathD: string
-  startX: number
-  startY: number
-  shotX: number
-  shotY: number
-  goalY: number
-}
-
 export interface PitchMoment {
   id: string
   title: string
-  hangul: string
   trophyType: 'europa' | 'goldenboot' | 'puskas' | 'ucl' | 'asiangames' | 'lafc'
   dateHighlight: string
   paragraphs: string[]
@@ -51,7 +29,6 @@ export interface ArchiveItem {
   category: 'Clubs' | 'Korea NT' | 'Signature Boots'
   season: string
   club: string
-  hangulClub: string
   title: string
   number: string
   primaryColor: string
@@ -66,7 +43,6 @@ export interface ArchiveItem {
 export interface CareerChapter {
   id: string
   period: string
-  cityHangul: string
   club: string
   league: string
   number: string
@@ -79,24 +55,23 @@ export interface CareerChapter {
 
 export interface GalleryCard {
   id: string
-  frameCode: string
   tag: string
   title: string
   subtitle: string
   year: string
   rotation: string
-  palette: 'gold' | 'obsidian' | 'crimson' | 'navy' | 'taegeuk'
+  palette: 'lime' | 'obsidian' | 'gold' | 'navy' | 'crimson'
   stat: string
   caption: string
+  image?: string
 }
 
 export const menuList: NavItem[] = [
-  { id: 'home', label: 'Viewfinder', hangul: '홈', target: '#hero', sectionId: 'home' },
-  { id: 'goals', label: 'Goal Radar', hangul: '득점 레이더', target: '#goals', sectionId: 'goals' },
-  { id: 'on-pitch', label: 'Legacy Nights', hangul: '명경기', target: '#on-pitch', sectionId: 'on-pitch' },
-  { id: 'archive', label: 'Matchworn Vault', hangul: '유니폼', target: '#archive', sectionId: 'archive' },
-  { id: 'off-pitch', label: 'Passport', hangul: '커리어', target: '#off-pitch', sectionId: 'off-pitch' },
-  { id: 'gallery', label: 'Contact Sheet', hangul: '팬 월', target: '#gallery', sectionId: 'gallery' },
+  { id: 'home', label: 'Home', target: '#hero', sectionId: 'home' },
+  { id: 'on-pitch', label: 'On Pitch', target: '#on-pitch', sectionId: 'on-pitch' },
+  { id: 'archive', label: 'Kits & Boots', target: '#archive', sectionId: 'archive' },
+  { id: 'off-pitch', label: 'Off Pitch', target: '#off-pitch', sectionId: 'off-pitch' },
+  { id: 'gallery', label: 'Fan Club', target: '#gallery', sectionId: 'gallery' },
 ]
 
 export const socialMediaList: SocialItem[] = [
@@ -106,115 +81,16 @@ export const socialMediaList: SocialItem[] = [
   { id: 'korea', label: 'Korea NT', url: 'https://www.kfa.or.kr/' },
 ]
 
-export const signatureGoals: SignatureGoal[] = [
-  {
-    id: 'burnley-puskas',
-    title: '73m Solo Coast-to-Coast',
-    opponent: 'vs Burnley (H)',
-    competition: 'Premier League · FIFA Puskás Winner',
-    date: '07 Dec 2019',
-    minute: '32’',
-    foot: 'Right Foot',
-    distance: '73 Meters Run',
-    speedOrCurve: '12.0s · 34.4 km/h',
-    description:
-      'Collected the ball outside his own box, burned past six Burnley defenders in 12 seconds flat, and slotted coolly past Nick Pope.',
-    pathD: 'M 90 215 Q 240 245 360 190 T 505 170',
-    startX: 90,
-    startY: 215,
-    shotX: 505,
-    shotY: 170,
-    goalY: 184,
-  },
-  {
-    id: 'arsenal-curler',
-    title: 'North London Derby Whip',
-    opponent: 'vs Arsenal (H)',
-    competition: 'Premier League',
-    date: '06 Dec 2020',
-    minute: '13’',
-    foot: 'Right Foot',
-    distance: '24 Yards',
-    speedOrCurve: 'Top-Right Corner',
-    description:
-      'Cut inside from the left channel, opened his body, and bent an unstoppable curling rocket straight into the far top corner past Leno.',
-    pathD: 'M 330 78 Q 375 100 412 118',
-    startX: 330,
-    startY: 78,
-    shotX: 412,
-    shotY: 118,
-    goalY: 158,
-  },
-  {
-    id: 'norwich-left-curler',
-    title: 'Golden Boot Left-Foot Screamer',
-    opponent: 'vs Norwich (A)',
-    competition: 'Premier League · Goal #23',
-    date: '22 May 2022',
-    minute: '75’',
-    foot: 'Left Foot',
-    distance: '22 Yards',
-    speedOrCurve: '104 km/h Curl',
-    description:
-      'Shifted onto his supposedly “weaker” left foot at Carrow Road and bent a venomous strike into the side netting to seal the Golden Boot.',
-    pathD: 'M 385 270 Q 418 242 448 228',
-    startX: 385,
-    startY: 270,
-    shotX: 448,
-    shotY: 228,
-    goalY: 202,
-  },
-  {
-    id: 'etihad-ucl',
-    title: 'Etihad UCL Lightning Strike',
-    opponent: 'vs Man City (A)',
-    competition: 'UEFA Champions League QF',
-    date: '17 Apr 2019',
-    minute: '10’',
-    foot: 'Right Foot',
-    distance: '20 Yards',
-    speedOrCurve: 'Top-Bins Bend',
-    description:
-      'Just three minutes after his equalizer, Son curled an audacious strike into the top corner from the left edge of the box to silence the Etihad.',
-    pathD: 'M 380 95 Q 415 112 452 126',
-    startX: 380,
-    startY: 95,
-    shotX: 452,
-    shotY: 126,
-    goalY: 156,
-  },
-  {
-    id: 'korea-germany',
-    title: 'Kazan Counter Sprint',
-    opponent: 'vs Germany (N)',
-    competition: 'FIFA World Cup 2018',
-    date: '27 Jun 2018',
-    minute: '90+6’',
-    foot: 'Left Foot',
-    distance: '58m Sprint',
-    speedOrCurve: 'Empty Net Finish',
-    description:
-      'Sprinted the length of Kazan Arena in stoppage time onto Ju Se-jong’s long ball and tapped home with his left foot to knock out the reigning champions.',
-    pathD: 'M 190 130 Q 340 120 530 165',
-    startX: 190,
-    startY: 130,
-    shotX: 530,
-    shotY: 165,
-    goalY: 178,
-  },
-]
-
 export const onPitchMoments: PitchMoment[] = [
   {
     id: 'bilbao-2025',
     title: 'Bilbao · Europa',
-    hangul: '유로파 리그 우승',
     trophyType: 'europa',
     dateHighlight: 'On May 21, 2025,',
     paragraphs: [
-      'Heung-Min Son etched his name into eternal Tottenham Hotspur folklore by lifting the UEFA Europa League trophy as club captain at San Mamés in Bilbao — ending the club’s 17-year wait for silverware.',
-      'Leading by example with relentless pressing and selfless leadership in the 1–0 victory over Manchester United, Son became the first Asian captain to lift a major European club trophy for an English side.',
-      'When the final whistle blew, the iconic smile gave way to tears of pure pride — fulfilling his promise to stay in North London until he lifted a cup in Lilywhite.',
+      'Heung-Min Son etched his name into eternal Tottenham Hotspur folklore by lifting the UEFA Europa League trophy as club captain at San Mamés in Bilbao. After a decade of devotion, near-misses, and carrying the badge through every storm, Sonny ended the club’s 17-year wait for silverware.',
+      'Leading by example with relentless pressing, selfless leadership, and calm command in the decisive moments of the 1–0 final victory over Manchester United, Son became the first Asian captain to lift a major European club trophy for an English side.',
+      'When the final whistle blew, the iconic smile gave way to tears of pure relief and pride — fulfilling the promise he made when he stayed in North London: to become a legend by winning a trophy in Lilywhite.',
     ],
     when: '21 May 25',
     result: '1',
@@ -225,13 +101,12 @@ export const onPitchMoments: PitchMoment[] = [
   {
     id: 'golden-boot-2022',
     title: 'Norwich · Golden Boot',
-    hangul: '프리미어리그 득점왕',
     trophyType: 'goldenboot',
     dateHighlight: 'On May 22, 2022,',
     paragraphs: [
-      'At Carrow Road on the final day of the season, Heung-Min Son scored twice in five minutes — sealed by a trademark left-footed curler — to reach 23 league goals and win the Premier League Golden Boot.',
-      'All 23 goals came from open play with zero penalties, showcasing razor-sharp two-footed finishing across 35 appearances.',
-      'Sonny made football history as the first Asian player ever to win the Premier League Golden Boot.',
+      'At Carrow Road on the final day of the Premier League season, Heung-Min Son scored twice in five minutes — including a signature whipped curler into the top corner — to reach 23 league goals and claim the 2021–22 Premier League Golden Boot.',
+      'Even more astonishing: all 23 goals came from open play with zero penalties, showcasing deadly two-footed finishing from both left and right wings across 35 appearances.',
+      'In doing so, Sonny made football history as the first Asian player ever to win the Premier League Golden Boot, uniting fans across North London and South Korea in celebration.',
     ],
     when: '22 May 22',
     result: '23',
@@ -242,12 +117,12 @@ export const onPitchMoments: PitchMoment[] = [
   {
     id: 'puskas-burnley-2019',
     title: 'London · Puskás',
-    hangul: '푸스카스상 73m 원더골',
     trophyType: 'puskas',
     dateHighlight: 'On December 7, 2019,',
     paragraphs: [
-      'Picking up the ball on the edge of his own penalty area against Burnley, Son ignited one of the greatest solo goals in football history — sprinting 73 meters past six defenders in 12 seconds.',
-      'Winning the 2020 FIFA Puskás Award, it remains the ultimate snapshot of Sonny at full throttle: explosive acceleration, balance at top speed, and ice-cold finishing.',
+      'Picking up the ball on the edge of his own penalty area against Burnley, Heung-Min Son ignited one of the greatest solo goals in Premier League history. In just 12 seconds, he accelerated 73 meters across the entire pitch, outrunning and weaving past six defenders.',
+      'Coolly slotting the finish past Nick Pope inside the box, the strike earned global acclaim and won the 2020 FIFA Puskás Award for the best goal scored anywhere in world football.',
+      'It remains the definitive snapshot of Son at full throttle: explosive pace, balance at maximum velocity, and clinical composure at the finish.',
     ],
     when: '07 Dec 19',
     result: '73',
@@ -258,12 +133,11 @@ export const onPitchMoments: PitchMoment[] = [
   {
     id: 'etihad-ucl-2019',
     title: 'Etihad · UCL Night',
-    hangul: '챔피언스리그 8강 멀티골',
     trophyType: 'ucl',
     dateHighlight: 'On April 17, 2019,',
     paragraphs: [
-      'Inside a roaring Etihad Stadium in the UEFA Champions League Quarter-Final second leg, Heung-Min Son stunned Manchester City with two clinical goals inside three minutes (7’ and 10’).',
-      'Scoring three of Tottenham’s four goals across the tie, Sonny propelled Spurs into their first-ever Champions League semi-final and final.',
+      'Inside a roaring Etihad Stadium in the UEFA Champions League Quarter-Final second leg, Heung-Min Son stunned Manchester City with two razor-sharp goals inside three minutes (7’ and 10’) to swing the tie in Tottenham’s favor.',
+      'Across both legs, Son scored three of Tottenham’s four goals in one of the most dramatic knockout ties in Champions League history, propelling Spurs into their first-ever European Cup semi-final and final.',
     ],
     when: '17 Apr 19',
     result: '03',
@@ -274,12 +148,11 @@ export const onPitchMoments: PitchMoment[] = [
   {
     id: 'asian-games-2018',
     title: 'Bogor · Gold Medal',
-    hangul: '아시안게임 금메달',
     trophyType: 'asiangames',
     dateHighlight: 'On September 1, 2018,',
     paragraphs: [
-      'Wearing the captain’s armband for South Korea at the 2018 Asian Games, Son carried the weight of a nation into extra time of the final against Japan.',
-      'Creating both decisive goals in extra time for a 2–1 triumph, Sonny secured gold for Korea and unlocked the peak years of his world-class career.',
+      'Wearing the captain’s armband for South Korea at the 2018 Asian Games in Indonesia, Son carried the weight of a nation into extra time of the gold-medal final against Japan.',
+      'Delivering two decisive plays in extra time to seal a 2–1 triumph, Sonny secured gold for Korea and earned his squad exemption from mandatory military service — a turning point that unlocked the peak years of his world-class career.',
     ],
     when: '01 Sep 18',
     result: '1',
@@ -290,12 +163,11 @@ export const onPitchMoments: PitchMoment[] = [
   {
     id: 'lafc-2025',
     title: 'Los Angeles · LAFC',
-    hangul: '로스앤젤레스 FC #7',
     trophyType: 'lafc',
     dateHighlight: 'In Summer 2025,',
     paragraphs: [
-      'After completing a legendary ten-year chapter in North London with 454 appearances and 173 goals, Heung-Min Son launched a thrilling new chapter in Major League Soccer with Los Angeles FC.',
-      'Pulling on the Black & Gold #7 shirt at BMO Stadium, Sonny brings championship pedigree, trademark camera celebrations, and electric pace to Los Angeles.',
+      'After completing a legendary ten-year chapter in North London with 454 appearances and 173 goals, Heung-Min Son embarked on an electrifying new chapter in Major League Soccer with Los Angeles FC.',
+      'Pulling on the iconic Black & Gold #7 jersey at BMO Stadium, Son brought Premier League-winning pedigree, trademark camera celebrations, and global star power to Los Angeles — inspiring a new generation across North America.',
     ],
     when: 'Aug 2025',
     result: '07',
@@ -311,12 +183,11 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Clubs',
     season: '2024–25',
     club: 'Tottenham Hotspur',
-    hangulClub: '토트넘 홋스퍼',
     title: 'Bilbao Captain Edition',
     number: '07',
     primaryColor: '#F3F5F7',
     secondaryColor: '#132257',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'solid',
     momentTitle: 'UEFA Europa League Winner',
     statsLine: '173 Total Club Goals · Captain',
@@ -327,28 +198,26 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Clubs',
     season: '2025–26',
     club: 'LAFC',
-    hangulClub: '로스앤젤레스 FC',
     title: 'Black & Gold #7',
     number: '07',
     primaryColor: '#111111',
     secondaryColor: '#C39E5C',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'sash',
     momentTitle: 'MLS Arrival Era',
     statsLine: 'BMO Stadium · Los Angeles',
-    description: 'Sleek obsidian and metallic gold sash marking Son’s move to Major League Soccer.',
+    description: 'Sleek obsidian and metallic gold crest marking Son’s move to Major League Soccer.',
   },
   {
     id: 'kit-spurs-2022',
     category: 'Clubs',
     season: '2021–22',
     club: 'Tottenham Hotspur',
-    hangulClub: '토트넘 홋스퍼',
     title: 'Golden Boot Home',
     number: '07',
     primaryColor: '#FFFFFF',
     secondaryColor: '#111836',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'solid',
     momentTitle: '23 Premier League Goals',
     statsLine: '0 Penalties · Historic Golden Boot',
@@ -359,12 +228,11 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Korea NT',
     season: '2022',
     club: 'Korea Republic',
-    hangulClub: '대한민국 대표팀',
     title: 'World Cup Red Mask',
     number: '07',
     primaryColor: '#C8102E',
     secondaryColor: '#0C0C0C',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'gradient',
     momentTitle: 'Doha Last-16 Miracle',
     statsLine: '90+1’ Assist vs Portugal',
@@ -375,12 +243,11 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Clubs',
     season: '2018–19',
     club: 'Tottenham Hotspur',
-    hangulClub: '토트넘 홋스퍼',
     title: 'UCL Semi-Final Away',
     number: '07',
     primaryColor: '#009E94',
     secondaryColor: '#132257',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'gradient',
     momentTitle: 'Etihad & Amsterdam Nights',
     statsLine: '3 Goals in UCL Quarter-Final',
@@ -391,12 +258,11 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Korea NT',
     season: '2018',
     club: 'Korea Republic',
-    hangulClub: '대한민국 대표팀',
     title: 'Taegeuk Warriors Gold',
     number: '07',
-    primaryColor: '#CD2E3A',
-    secondaryColor: '#0047A0',
-    accentColor: '#f5c518',
+    primaryColor: '#E4002B',
+    secondaryColor: '#003478',
+    accentColor: '#38bdf8',
     pattern: 'stripes',
     momentTitle: 'Asian Games Champion',
     statsLine: 'Gold Medal · Captain',
@@ -407,28 +273,26 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Clubs',
     season: '2013–15',
     club: 'Bayer Leverkusen',
-    hangulClub: '바이어 레버쿠젠',
     title: 'Werkself Striker',
     number: '07',
     primaryColor: '#141414',
-    secondaryColor: '#CD2E3A',
-    accentColor: '#f5c518',
+    secondaryColor: '#E32221',
+    accentColor: '#38bdf8',
     pattern: 'sash',
     momentTitle: 'Bundesliga & UCL Breakout',
     statsLine: '87 Apps · 29 Goals',
-    description: 'Two-footed thunderbolts in Germany that put Europe’s biggest clubs on alert.',
+    description: 'Two-footed thunderbolts in Germany that caught Europe’s biggest clubs watching.',
   },
   {
     id: 'kit-hsv-2010',
     category: 'Clubs',
     season: '2010–13',
     club: 'Hamburger SV',
-    hangulClub: '함부르크 SV',
     title: '18-Year-Old Debut',
     number: '40',
     primaryColor: '#FFFFFF',
     secondaryColor: '#0A5BA4',
-    accentColor: '#f5c518',
+    accentColor: '#38bdf8',
     pattern: 'stripes',
     momentTitle: 'First Bundesliga Goal vs Köln',
     statsLine: '78 Apps · 20 Goals',
@@ -439,16 +303,15 @@ export const archiveItems: ArchiveItem[] = [
     category: 'Signature Boots',
     season: '2023',
     club: 'Adidas X Crazyfast',
-    hangulClub: '아디다스 시그니처',
     title: '“SON” Signature Pack',
     number: '07',
-    primaryColor: '#07090e',
-    secondaryColor: '#f5c518',
-    accentColor: '#cd2e3a',
+    primaryColor: '#070b19',
+    secondaryColor: '#38bdf8',
+    accentColor: '#f8fafc',
     pattern: 'boot',
     momentTitle: 'First Asian Signature Boot',
-    statsLine: 'Seoulite Pack · Custom #7',
-    description: 'Adidas’s landmark signature boot celebrating Son’s 10-year partnership and Korean football pride.',
+    statsLine: 'Neon Lime / Seoul Seoulite',
+    description: 'Adidas’s landmark signature boot celebrating Son’s 10-year partnership and Seoul’s electric night energy.',
   },
 ]
 
@@ -456,7 +319,6 @@ export const careerChapters: CareerChapter[] = [
   {
     id: 'hsv',
     period: '2010 – 2013',
-    cityHangul: '함부르크',
     club: 'Hamburger SV',
     league: 'Bundesliga',
     number: '#40 / #15',
@@ -469,7 +331,6 @@ export const careerChapters: CareerChapter[] = [
   {
     id: 'bayer',
     period: '2013 – 2015',
-    cityHangul: '레버쿠젠',
     club: 'Bayer 04 Leverkusen',
     league: 'Bundesliga & UCL',
     number: '#7',
@@ -482,7 +343,6 @@ export const careerChapters: CareerChapter[] = [
   {
     id: 'spurs',
     period: '2015 – 2025',
-    cityHangul: '북런던',
     club: 'Tottenham Hotspur',
     league: 'Premier League',
     number: '#7 (Captain)',
@@ -495,7 +355,6 @@ export const careerChapters: CareerChapter[] = [
   {
     id: 'korea',
     period: '2010 – Present',
-    cityHangul: '서울',
     club: 'South Korea NT',
     league: 'International',
     number: '#7 (Captain)',
@@ -508,7 +367,6 @@ export const careerChapters: CareerChapter[] = [
   {
     id: 'lafc',
     period: '2025 – Present',
-    cityHangul: '로스앤젤레스',
     club: 'Los Angeles FC',
     league: 'Major League Soccer',
     number: '#7',
@@ -523,19 +381,17 @@ export const careerChapters: CareerChapter[] = [
 export const galleryCards: GalleryCard[] = [
   {
     id: 'card-1',
-    frameCode: 'ROLL 07 · EXP 01',
     tag: 'SIGNATURE',
     title: 'The Camera Celebration',
-    subtitle: 'Framing every goal in memory',
+    subtitle: 'Capturing every goal in memory',
     year: '2020–2026',
     rotation: '-rotate-6',
-    palette: 'gold',
+    palette: 'lime',
     stat: '173+ Clicks',
-    caption: 'Started so every goal is framed forever — now one of the most iconic celebrations in world football.',
+    caption: 'Started so every goal is framed forever — now one of the most iconic celebrations in modern football.',
   },
   {
     id: 'card-2',
-    frameCode: 'ROLL 07 · EXP 02',
     tag: 'CHUNCHEON ROOTS',
     title: '4 Hours of Keepy-Uppies',
     subtitle: 'Trained by Son Woong-jung',
@@ -543,35 +399,32 @@ export const galleryCards: GalleryCard[] = [
     rotation: 'rotate-2',
     palette: 'obsidian',
     stat: '500 Shots/Day',
-    caption: 'Before playing an official youth match, Sonny spent years mastering ball control equally with both feet.',
+    caption: 'Before ever playing an official match, Sonny spent years mastering ball control equally with both left and right feet.',
   },
   {
     id: 'card-3',
-    frameCode: 'ROLL 07 · EXP 03',
     tag: 'BILBAO NIGHT',
     title: 'Captain Lifts the Cup',
     subtitle: 'Tottenham’s 17-year wait ends',
     year: '21 May 2025',
     rotation: 'rotate-6',
-    palette: 'navy',
+    palette: 'gold',
     stat: '1–0 Final',
-    caption: 'San Mamés erupted as Heung-Min Son raised the UEFA Europa League trophy high above North London’s faithful.',
+    caption: 'San Mamés erupted as Heung-Min Son raised the UEFA Europa League trophy high above North London’s traveling faithful.',
   },
   {
     id: 'card-4',
-    frameCode: 'ROLL 07 · EXP 04',
     tag: 'BOTH FEET',
     title: 'Zero Weak Foot',
     subtitle: 'Deadly from left or right',
     year: 'Career',
     rotation: '-rotate-3',
-    palette: 'taegeuk',
-    stat: '45% Left Foot',
-    caption: 'One of the most genuinely ambidextrous finishers in Premier League history — defenders cannot show him either side.',
+    palette: 'navy',
+    stat: '45% Weak Foot',
+    caption: 'One of the most genuinely ambidextrous finishers in Premier League history — defenders never know which side he will cut.',
   },
   {
     id: 'card-5',
-    frameCode: 'ROLL 07 · EXP 05',
     tag: 'OFF PITCH',
     title: 'NOS7 & Global Style',
     subtitle: 'Burberry · Calvin Klein · Adidas',
@@ -583,27 +436,28 @@ export const galleryCards: GalleryCard[] = [
   },
   {
     id: 'card-6',
-    frameCode: 'ROLL 07 · EXP 06',
     tag: 'GOLDEN BOOT',
     title: '23 Goals · 0 Penalties',
     subtitle: 'First Asian PL Top Scorer',
     year: '2021–22',
     rotation: '-rotate-2',
-    palette: 'gold',
+    palette: 'lime',
     stat: '23 Goals',
     caption: 'Pure open-play brilliance sealed with a five-minute brace on Championship Sunday at Carrow Road.',
   },
 ]
 
 export const marqueeBrands = [
-  '손흥민 HEUNG-MIN SON',
-  'TOTTENHAM HOTSPUR CAPTAIN',
+  'TOTTENHAM HOTSPUR',
   'LAFC #7',
   'KOREA REPUBLIC',
-  'GOLDEN BOOT 2022',
-  'FIFA PUSKÁS 2020',
-  'EUROPA LEAGUE 2025',
-  '9× BEST FOOTBALLER IN ASIA',
+  'BAYER LEVERKUSEN',
+  'HAMBURGER SV',
+  'ADIDAS',
   'NOS7',
+  'BURBERRY',
+  'PUSKÁS 2020',
+  'GOLDEN BOOT 2022',
+  'EUROPA LEAGUE 2025',
   'EFFORT NEVER BETRAYS YOU',
 ]
