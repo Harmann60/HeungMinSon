@@ -8,6 +8,33 @@ import { useMenuStore } from '../../store/useAppStore'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const momentPhotos: Record<string, { src: string; caption: string }> = {
+  'bilbao-2025': {
+    src: '/images/son/son-mural.jpg',
+    caption: 'Tottenham mural honoring the Europa League Captain',
+  },
+  'golden-boot-2022': {
+    src: '/images/son/son-bfa-2023.jpg',
+    caption: 'Golden Boot & Asia’s finest smiling portrait',
+  },
+  'puskas-burnley-2019': {
+    src: '/images/son/son-spurs-2017.jpg',
+    caption: 'Sonny accelerating past defenders in Lilywhite',
+  },
+  'etihad-ucl-2019': {
+    src: '/images/son/son-spurs-2024.jpg',
+    caption: 'Tottenham #7 under the stadium lights',
+  },
+  'asian-games-2018': {
+    src: '/images/son/son-korea-wc2018.png',
+    caption: 'South Korea Captain on international duty',
+  },
+  'lafc-2025': {
+    src: '/images/son/son-lafc-106.jpg',
+    caption: 'New chapter in LAFC Black & Gold #7',
+  },
+}
+
 export const OnPitchSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const { setActiveSection } = useMenuStore()
@@ -115,18 +142,36 @@ export const OnPitchSection: React.FC = () => {
                 <span className="onpitch-highlight absolute inset-0 block bg-default z-10 pointer-events-none" />
               </div>
 
-              <div className="relative mt-5 pl-1 md:pl-3 flex flex-col gap-4 max-w-4xl overflow-hidden">
-                {moment.paragraphs.map((text, idx) => (
-                  <p key={idx} className="font-sans text-base md:text-xl text-beige leading-relaxed">
-                    {idx === 0 && (
-                      <strong className="font-bungee text-default mr-2 text-sm md:text-base">
-                        {moment.dateHighlight}
-                      </strong>
-                    )}
-                    {text}
-                  </p>
-                ))}
-                <span className="onpitch-highlight absolute inset-0 block bg-default z-10 pointer-events-none" />
+              <div className="mt-5 grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+                <div className="xl:col-span-8 relative pl-1 md:pl-3 flex flex-col gap-4 overflow-hidden">
+                  {moment.paragraphs.map((text, idx) => (
+                    <p key={idx} className="font-sans text-base md:text-xl text-beige leading-relaxed">
+                      {idx === 0 && (
+                        <strong className="font-bungee text-default mr-2 text-sm md:text-base">
+                          {moment.dateHighlight}
+                        </strong>
+                      )}
+                      {text}
+                    </p>
+                  ))}
+                  <span className="onpitch-highlight absolute inset-0 block bg-default z-10 pointer-events-none" />
+                </div>
+
+                {momentPhotos[moment.id] && (
+                  <div className="xl:col-span-4 rounded-2xl overflow-hidden border border-white/10 bg-main-bg group">
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img
+                        src={momentPhotos[moment.id].src}
+                        alt={moment.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <p className="px-4 py-2.5 text-xs font-medium text-beige border-t border-white/10">
+                      {momentPhotos[moment.id].caption}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* 3-Column Lando Metric Strip */}

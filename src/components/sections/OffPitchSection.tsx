@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 import { careerChapters } from '../../data/sonData'
 import { useMenuStore } from '../../store/useAppStore'
 
+const chapterImages: Record<string, string> = {
+  hsv: '/images/son/son-leverkusen-2014.jpg',
+  bayer: '/images/son/son-leverkusen-2014.jpg',
+  spurs: '/images/son/son-spurs-2024.jpg',
+  korea: '/images/son/son-korea-2022.jpg',
+  lafc: '/images/son/son-lafc-138.jpg',
+}
+
 export const OffPitchSection: React.FC = () => {
   const [selectedChapter, setSelectedChapter] = useState(careerChapters[2]) // Default to Spurs legendary era
   const { setActiveSection } = useMenuStore()
@@ -86,18 +94,27 @@ export const OffPitchSection: React.FC = () => {
 
             {/* Active Chapter Detail Panel */}
             <div className="rounded-3xl bg-main-bg border border-white/15 p-6 md:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10">
-                <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-default">
-                    {selectedChapter.league} · {selectedChapter.period}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center pb-6 border-b border-white/10">
+                <div className="md:col-span-8 flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-default">
+                      {selectedChapter.league} · {selectedChapter.period}
+                    </span>
+                    <h3 className="mt-1 font-bungee text-2xl md:text-4xl text-white uppercase">
+                      {selectedChapter.club}
+                    </h3>
+                  </div>
+                  <span className="px-4 py-1.5 rounded-full bg-black border border-default/40 font-bungee text-sm text-default">
+                    {selectedChapter.number}
                   </span>
-                  <h3 className="mt-1 font-bungee text-2xl md:text-4xl text-white uppercase">
-                    {selectedChapter.club}
-                  </h3>
                 </div>
-                <span className="px-4 py-1.5 rounded-full bg-black border border-default/40 font-bungee text-sm text-default">
-                  {selectedChapter.number}
-                </span>
+                <div className="md:col-span-4 aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black">
+                  <img
+                    src={chapterImages[selectedChapter.id]}
+                    alt={selectedChapter.club}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
               </div>
 
               <p className="mt-5 font-sans text-base md:text-lg text-beige leading-relaxed">
