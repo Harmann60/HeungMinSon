@@ -1,8 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Send, CheckCircle2, Camera, Expand, ChevronLeft, ChevronRight, X, MapPin } from 'lucide-react'
+import { Send, CheckCircle2, Camera, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { galleryCards, GalleryCard, photoGalleryList, PhotoGalleryItem } from '../../data/sonData'
 import { useFanWallStore, useMenuStore } from '../../store/useAppStore'
+import JournalSpreadCarousel, { type JournalSpread } from '../ui/journal-spread-carousel'
+
+function buildSonSpreads(photos: PhotoGalleryItem[]): JournalSpread[] {
+  const spreads: JournalSpread[] = []
+  for (let i = 0; i < photos.length; i += 2) {
+    const bg = photos[i]
+    const pin = photos[i + 1]
+    const flip = (i / 2) % 2 === 1
+    spreads.push({
+      id: bg.id,
+      label: bg.title,
+      image: bg.src,
+      alt: bg.alt,
+      imagePosition: '50% 18%',
+      paper: '#2d3149',
+      prints: pin
+        ? [
+            {
+              src: pin.src,
+              alt: pin.alt,
+              x: flip ? 71 : 5,
+              y: 10,
+              w: 22,
+              rotate: flip ? 6 : -6,
+              caption: pin.title,
+              tape: (i / 2) % 3 === 1,
+            },
+          ]
+        : undefined,
+      notes: [
+        {
+          x: flip ? 6 : 68,
+          y: 62,
+          w: 25,
+          rotate: flip ? -2 : 2,
+          style: (i / 2) % 2 === 0 ? 'card' : 'ink',
+          title: `${bg.year} · ${bg.era}`,
+          body: `${bg.title} — ${bg.location}`,
+        },
+      ],
+    })
+  }
+  return spreads
+}
 
 const galleryFilters: Array<'All' | 'Tottenham Hotspur' | 'LAFC' | 'Korea & Awards'> = [
   'All',
@@ -29,6 +73,8 @@ export const GallerySection: React.FC = () => {
     photoFilter === 'All'
       ? photoGalleryList
       : photoGalleryList.filter((p) => p.era === photoFilter)
+
+  const spreads = useMemo(() => buildSonSpreads(filteredPhotos), [filteredPhotos])
 
   useEffect(() => {
     if (!lightboxPhoto) return
@@ -186,49 +232,21 @@ export const GallerySection: React.FC = () => {
             </div>
           </div>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 space-y-5">
-            {filteredPhotos.map((photo) => (
-              <motion.button
-                key={photo.id}
-                layout
-                type="button"
-                onClick={() => setLightboxPhoto(photo)}
-                className="break-inside-avoid w-full group relative text-left rounded-2xl overflow-hidden bg-main-bg border border-white/10 hover:border-default/80 transition-colors flex flex-col"
-              >
-                <div className="relative w-full overflow-hidden bg-black">
-                  <img
-                    src={photo.src}
-                    alt={photo.alt}
-                    loading="lazy"
-                    className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 opacity-75 group-hover:opacity-90 transition-opacity pointer-events-none" />
-
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-sm border border-white/15 text-[10px] font-bold uppercase tracking-widest text-default">
-                    {photo.year}
-                  </div>
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/75 backdrop-blur-sm border border-white/15 flex items-center justify-center text-white group-hover:bg-default group-hover:text-black transition-colors">
-                    <Expand className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-
-                <div className="p-4 flex flex-col justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-default">
-                      {photo.era}
-                    </span>
-                    <h4 className="mt-1 font-sans text-base font-extrabold text-white group-hover:text-default transition-colors">
-                      {photo.title}
-                    </h4>
-                  </div>
-                  <p className="mt-2 inline-flex items-center gap-1 text-[11px] text-beige">
-                    <MapPin className="w-3 h-3 text-default shrink-0" />
-                    <span>{photo.location}</span>
-                  </p>
-                </div>
-              </motion.button>
-            ))}
-          </div>
+          <JournalSpreadCarousel
+            key={photoFilter}
+            spreads={spreads}
+            title="Through The Lens"
+            meta={`${filteredPhotos.length} Frames`}
+            height="82vh"
+            autoPlay={3500}
+            className="rounded-3xl border border-white/10 shadow-2xl"
+            onAction={(action, spreadIndex) => {
+              if (action === 'more' || action === 'add') {
+                const photo = filteredPhotos[spreadIndex * 2]
+                if (photo) setLightboxPhoto(photo)
+              }
+            }}
+          />
         </div>
 
         {/* Fan Club Wall & Contact Form */}
