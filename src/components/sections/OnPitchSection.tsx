@@ -8,30 +8,38 @@ import { useMenuStore } from '../../store/useAppStore'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const momentPhotos: Record<string, { src: string; caption: string }> = {
+const momentPhotos: Record<string, { src: string; caption: string; position: string; fit?: 'cover' | 'contain' }> = {
   'bilbao-2025': {
     src: '/images/son/son-mural.jpg',
     caption: 'Tottenham mural honoring the Europa League Captain',
+    position: '50% 42%',
   },
   'golden-boot-2022': {
-    src: '/images/son/son-bfa-2023.jpg',
-    caption: 'Golden Boot & Asia’s finest smiling portrait',
+    src: '/images/son/goldenboot.webp',
+    caption: 'Heung-Min Son with the 2021/22 Premier League Golden Boot',
+    position: '46% 18%',
   },
   'puskas-burnley-2019': {
-    src: '/images/son/son-spurs-2017.jpg',
-    caption: 'Sonny accelerating past defenders in Lilywhite',
+    src: '/images/son/puskas.jpeg',
+    caption: '73-meter Puskás Award solo run past Burnley',
+    position: '62% 22%',
   },
   'etihad-ucl-2019': {
-    src: '/images/son/son-spurs-2024.jpg',
-    caption: 'Tottenham #7 under the stadium lights',
+    src: '/images/son/son-spurs-away.jpg',
+    caption: 'Tottenham #7 away kit under European lights',
+    position: '50% 15%',
+    fit: 'contain',
   },
   'asian-games-2018': {
-    src: '/images/son/son-korea-wc2018.png',
-    caption: 'South Korea Captain on international duty',
+    src: '/images/son/son-asiancup-2019.jpg',
+    caption: 'South Korea Captain leading the Taegeuk Warriors',
+    position: '50% 12%',
+    fit: 'contain',
   },
   'lafc-2025': {
-    src: '/images/son/son-lafc-106.jpg',
-    caption: 'New chapter in LAFC Black & Gold #7',
+    src: '/images/son/son-lafc-celebrate.jpg',
+    caption: 'Celebrating in LAFC Black & Gold #7',
+    position: '40% 16%',
   },
 }
 
@@ -159,12 +167,15 @@ export const OnPitchSection: React.FC = () => {
 
                 {momentPhotos[moment.id] && (
                   <div className="xl:col-span-4 rounded-2xl overflow-hidden border border-white/10 bg-main-bg group">
-                    <div className="aspect-[16/10] overflow-hidden">
+                    <div className="aspect-[4/3] overflow-hidden bg-black">
                       <img
                         src={momentPhotos[moment.id].src}
                         alt={moment.title}
                         loading="lazy"
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        style={{ objectPosition: momentPhotos[moment.id].position }}
+                        className={`w-full h-full ${
+                          momentPhotos[moment.id].fit === 'contain' ? 'object-contain' : 'object-cover'
+                        } group-hover:scale-105 transition-transform duration-500`}
                       />
                     </div>
                     <p className="px-4 py-2.5 text-xs font-medium text-beige border-t border-white/10">

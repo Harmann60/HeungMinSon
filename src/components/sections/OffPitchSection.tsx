@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { careerChapters } from '../../data/sonData'
 import { useMenuStore } from '../../store/useAppStore'
 
-const chapterImages: Record<string, string> = {
-  hsv: '/images/son/son-leverkusen-2014.jpg',
-  bayer: '/images/son/son-leverkusen-2014.jpg',
-  spurs: '/images/son/son-spurs-2024.jpg',
-  korea: '/images/son/son-korea-2022.jpg',
-  lafc: '/images/son/son-lafc-138.jpg',
+const chapterImages: Record<string, { src: string; position: string; fit: 'cover' | 'contain' }> = {
+  hsv: { src: '/images/son/son-spurs-2017.jpg', position: '32% 18%', fit: 'cover' },
+  bayer: { src: '/images/son/son-leverkusen-2014.jpg', position: '50% 15%', fit: 'contain' },
+  spurs: { src: '/images/son/son-titan-2018.jpg', position: '58% 18%', fit: 'cover' },
+  korea: { src: '/images/son/son-korea-wc2018.png', position: '50% 15%', fit: 'contain' },
+  lafc: { src: '/images/son/son-lafc-138.jpg', position: '42% 14%', fit: 'cover' },
 }
 
 export const OffPitchSection: React.FC = () => {
@@ -108,11 +108,14 @@ export const OffPitchSection: React.FC = () => {
                     {selectedChapter.number}
                   </span>
                 </div>
-                <div className="md:col-span-4 aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-black">
+                <div className="md:col-span-4 aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 bg-black">
                   <img
-                    src={chapterImages[selectedChapter.id]}
+                    src={chapterImages[selectedChapter.id].src}
                     alt={selectedChapter.club}
-                    className="w-full h-full object-cover object-top"
+                    style={{ objectPosition: chapterImages[selectedChapter.id].position }}
+                    className={`w-full h-full ${
+                      chapterImages[selectedChapter.id].fit === 'contain' ? 'object-contain' : 'object-cover'
+                    }`}
                   />
                 </div>
               </div>

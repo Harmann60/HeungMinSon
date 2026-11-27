@@ -20,7 +20,7 @@ While global football icons like Messi and Ronaldo have dedicated official digit
 - **On-Pitch Legacy Chronicles:** Full-width matchday storytelling (Bilbao 2025 Europa League triumph, 2021–22 Premier League Golden Boot, 2019 FIFA Puskás solo run, Etihad UCL brace, 2018 Asian Games Gold, and LAFC `#7` arrival) driven by **GSAP ScrollTrigger** horizontal highlight wipes and custom trophy vectors.
 - **Kits & Signature Boots Archive:** Filterable showcase (`All`, `Clubs`, `Korea NT`, `Signature Boots`) with front-to-back `#7` jersey hover swaps and an inspect modal for every era.
 - **Interactive Career Passport:** Era-by-era breakdown covering Hamburger SV, Bayer Leverkusen, Tottenham Hotspur, South Korea NT, and LAFC with appearances, goals, assists, and matchday photography.
-- **Tilted Photo Reel & Dedicated Photo Gallery:** Staggered `.vd-card` reel plus a filterable 12-photo gallery (`Tottenham Hotspur`, `LAFC`, `Korea & Awards`) with a full-screen keyboard-navigable lightbox (`Esc`, `←`, `→`).
+- **Tilted Photo Reel & Dedicated Photo Gallery:** Staggered `.vd-card` reel plus a filterable 16-photo gallery (`Tottenham Hotspur`, `LAFC`, `Korea & Awards`) with a full-screen keyboard-navigable lightbox (`Esc`, `←`, `→`) and zero repeated photos across the entire site.
 - **Fan Club Guestbook:** Live tribute submission form backed by Zustand state management.
 - **Curved-Notch Masked Footer:** SVG-masked editorial panel with custom pitch contour lines, signature vector, active-link strike animation, and an infinite scroll-reactive GSAP ticker marquee.
 
@@ -49,7 +49,7 @@ HeungMinSon/
 │   │   ├── hero-base.jpg
 │   │   ├── hero-reveal.jpg
 │   │   ├── footer-trophy.jpg
-│   │   └── son/                  # 12 curated match & portrait photos
+│   │   └── son/                  # 33 unique match & portrait photos
 │   └── svgs/
 │       └── image-bg.svg          # Footer notch mask
 ├── src/

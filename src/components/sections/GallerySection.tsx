@@ -105,7 +105,8 @@ export const GallerySection: React.FC = () => {
                   src={card.image}
                   alt={card.title}
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover object-top"
+                  style={{ objectPosition: card.objectPosition }}
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/25" />
 
@@ -185,23 +186,23 @@ export const GallerySection: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 space-y-5">
             {filteredPhotos.map((photo) => (
               <motion.button
                 key={photo.id}
                 layout
                 type="button"
                 onClick={() => setLightboxPhoto(photo)}
-                className="group relative text-left rounded-2xl overflow-hidden bg-main-bg border border-white/10 hover:border-default/80 transition-colors flex flex-col"
+                className="break-inside-avoid w-full group relative text-left rounded-2xl overflow-hidden bg-main-bg border border-white/10 hover:border-default/80 transition-colors flex flex-col"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-black">
+                <div className="relative w-full overflow-hidden bg-black">
                   <img
                     src={photo.src}
                     alt={photo.alt}
                     loading="lazy"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 opacity-80 group-hover:opacity-95 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 opacity-75 group-hover:opacity-90 transition-opacity pointer-events-none" />
 
                   <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-sm border border-white/15 text-[10px] font-bold uppercase tracking-widest text-default">
                     {photo.year}
@@ -211,7 +212,7 @@ export const GallerySection: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-4 flex flex-col justify-between flex-1">
+                <div className="p-4 flex flex-col justify-between">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-default">
                       {photo.era}
